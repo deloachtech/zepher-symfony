@@ -1,0 +1,20 @@
+parameters:
+
+  zepher:
+
+    app_init:
+
+      # These values syc with the zepher_dev.json file used when initiating the bundle.
+      user_roles: ['rol_CxcX5EkMvwUJDYyz']
+      app_version_id: 'ver_zTQ8UX57ehb6Vjmr'
+      app_domain_id: 'dom_4zVxQbU3quXvjfF1'
+
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  DeLoachTech\ZepherBundle\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'

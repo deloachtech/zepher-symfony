@@ -1,0 +1,15 @@
+{
+  "name": "deloachtech/zepher-symfony",
+  "description": "This Zepher Symfony bundle adds RBAC, SaaS and app versioning to your application.",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "require": {
+    "deloachtech/zepher-php": "1.0.*",
+    "symfony/flex": "^1.17|^2"
+  },
+  "autoload": {
+    "psr-4": {
+      "DeLoachTech\\ZepherBundle\\": "src/"
+    }
+  }
+}
