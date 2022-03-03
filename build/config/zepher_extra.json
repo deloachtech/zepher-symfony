@@ -1,0 +1,9 @@
+{
+  "_readme": [
+    "This file provides a means for modifying the behavior of the core object processor.",
+    "The 'dev' key will only be applicable when the zepher_dev.json file is loaded."
+  ],
+  "dev": {
+    "impersonate_role": "ROLE_SUPER_USER"
+  }
+}

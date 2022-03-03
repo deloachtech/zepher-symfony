@@ -18,8 +18,8 @@ class AccessControl extends Zepher
     public function __construct(
         AccessRepository $accessRepository,
         SessionInterface $session,
-        AccessService $accessService,
-        array $config
+        AccessService    $accessService,
+        array            $config
     )
     {
         $this->_config = $config;
@@ -29,9 +29,9 @@ class AccessControl extends Zepher
         $domainId = null;
 
         $accountId = $session->get($config['session_keys']['account_id']);
-        $userRoles = $session->get($config['session_keys']['user_roles'])??[];
+        $userRoles = $session->get($config['session_keys']['user_roles']) ?? [];
 
-        if($accountId) {
+        if ($accountId) {
 
             if ($accessRepository->isEmpty()) {
                 $domainId = $config['app_domain_id'];

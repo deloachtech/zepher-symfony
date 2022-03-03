@@ -2,6 +2,9 @@ parameters:
 
   zepher:
 
+    demo_mode:
+      role: ROLE_SUPER_USER2
+
     app_init:
 
       # These values syc with the zepher_dev.json file used when initiating the bundle.
