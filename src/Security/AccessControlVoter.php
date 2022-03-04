@@ -30,11 +30,6 @@ class AccessControlVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
-        if (!$user = $token->getUser()) {
-            return false;
-        }
-
-
         return $this->accessControl->userCanAccess($attribute, $subject);
     }
 }
