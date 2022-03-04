@@ -13,7 +13,7 @@
     "  1. Domain ids",
     "  2. Version ids",
     "  All other values are for your use.",
-    "  You'll be storing user roles, so their ids are also sensitive."
+    "  (You'll be storing user roles, so their ids are also sensitive.)"
   ],
   "data": {
     "_app_notes": [
