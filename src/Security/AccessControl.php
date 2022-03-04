@@ -11,9 +11,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class AccessControl extends Zepher
 {
 
-    private $_config;
     private $accessRepository;
     private $accessService;
+    private $_config;
 
     public function __construct(
         AccessRepository $accessRepository,
@@ -31,11 +31,16 @@ class AccessControl extends Zepher
         $accountId = $session->get($config['session_keys']['account_id']);
         $userRoles = $session->get($config['session_keys']['user_roles']) ?? [];
 
+        // Use the Zepher extra impersonation feature.
+        $extra = Zepher::getConfig($config['object_file'])['extra'] ??[];
+        $domainId = $extra['impersonate_domain']??$domainId;
+        $accountId = $extra['impersonate_account']??$accountId;
+        $userRoles = isset($extre['impersonate_role']) ? (array)$extra['extra']['impersonate_role'] : $userRoles;
+
         if ($accountId) {
 
             if ($accessRepository->isEmpty()) {
-                $domainId = $config['app_domain_id'];
-                $this->accessService->createAccount($accountId, $domainId);
+                $this->accessService->createAccount($accountId, $domainId ?? $config['app_domain_id']);
             } else {
                 $vo = new AccessValueObject($accountId);
                 $this->accessRepository->getAccessValues($vo);
@@ -52,8 +57,7 @@ class AccessControl extends Zepher
         );
     }
 
-
-    public function getConfig(): array
+    public function getAccessConfig(): array
     {
         return $this->_config;
     }

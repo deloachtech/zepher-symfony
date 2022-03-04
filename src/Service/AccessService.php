@@ -12,7 +12,7 @@ class AccessService
     private $config;
     private $accessRepository;
 
-    public function __construct(AccessRepository $accessRepository ,array $config)
+    public function __construct(AccessRepository $accessRepository, array $config)
     {
         $this->config = $config;
         $this->accessRepository = $accessRepository;
@@ -23,14 +23,14 @@ class AccessService
      * When you create a new account, use this method to create its entry in the access table.
      * @param $accountId
      * @param string $domainId
-     * @param string|null $versionId Optional app version id. If empty, the first version in the liss will be selected.
+     * @param string|null $versionId Optional app version id. If empty, the first version in the list will be selected.
      * @return bool
      * @throws \Exception
      */
     public function createAccount($accountId, string $domainId, string $versionId = null): bool
     {
 
-        $json = json_decode(file_get_contents(Zepher::getObjectFile($this->config['object_file'])),true);
+        $json = Zepher::getConfig($this->config['object_file'])['object'];
 
         $versionId = $versionId ?? reset($json['data']['domains'][$domainId]['versions']);
 
@@ -39,8 +39,18 @@ class AccessService
             ->setDomainId($domainId)
             ->setVersionId($versionId);
 
-        return  $this->accessRepository->setAccessValues($vo);
+        return $this->accessRepository->setAccessValues($vo);
     }
+
+    /**
+     * @param $accountId
+     * @return bool
+     */
+    public function deleteAccount($accountId): bool
+    {
+        return $this->accessRepository->deleteAccessValues($accountId);
+    }
+
 
     public function getConfig(): array
     {

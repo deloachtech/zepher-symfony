@@ -84,6 +84,16 @@ class AccessRepository extends ServiceEntityRepository implements PersistenceCla
         }
     }
 
+    /**
+     * Zepher/PersistenceClassInterface method
+     * @param $accountId
+     * @return bool
+     */
+    public function deleteAccessValues($accountId): bool
+    {
+        return $this->deleteAccessRecords($accountId);
+    }
+
 
     /**
      * Zepher/FeeProviderPersistenceInterface method
@@ -117,7 +127,28 @@ class AccessRepository extends ServiceEntityRepository implements PersistenceCla
         return $this->getEntityManager()->getConnection()->executeQuery("select account_id from zepher_access where coalesce(last_process,activated) < UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 30 DAY)) and closed is null")->fetchFirstColumn() ?? [];
     }
 
+    /**
+     * Zepher/FeeProviderPersistenceInterface method
+     * @param $configFile
+     * @return void
+     */
+    public function configFile($configFile)
+    {
+
+    }
+
+
+    public function config($config)
+    {
+    }
+
     // Helper methods
+
+    private function deleteAccessRecords($accountId): bool
+    {
+        return $this->getEntityManager()->getConnection()->executeQuery("delete from zepher_access where account_id = ?", [$accountId])->rowCount() >=0;
+
+    }
 
     private function getAccountRecords(string $accountId): array
     {
@@ -154,17 +185,5 @@ class AccessRepository extends ServiceEntityRepository implements PersistenceCla
     {
         return $this->getEntityManager()->getConnection()->executeQuery("select account_id, domain_id, version_id, activated, last_process, closed from zepher_access where account_id = ? order by activated DESC limit 1", [$accountId])->fetchAssociative() ?? [];
     }
-
-
-    /**
-     * Zepher/FeeProviderPersistenceInterface method
-     * @param $configFile
-     * @return void
-     */
-    public function configFile($configFile)
-    {
-
-    }
-
 
 }

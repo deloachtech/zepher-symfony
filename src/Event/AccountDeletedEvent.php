@@ -13,14 +13,14 @@ class AccountDeletedEvent extends Event
 
 
 
-	public function __construct(string $accountId)
+	public function __construct($accountId)
 	{
 		$this->accountId = $accountId;
 	}
 
 
 
-	public function getAccountId(): string
+	public function getAccountId()
 	{
 		return $this->accountId;
 	}

@@ -19,7 +19,7 @@ class AccessControlVoter extends Voter
 
     protected function supports(string $attribute, $subject): bool
     {
-        $key = $this->accessControl->getConfig()['feature_id_prefix'];
+        $key = $this->accessControl->getAccessConfig()['feature_id_prefix'];
 
         if (substr($attribute, 0, strlen($key)) != $key) {
             return false;

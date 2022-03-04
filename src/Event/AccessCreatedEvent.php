@@ -14,7 +14,7 @@ class AccessCreatedEvent extends Event
     private $activated;
 
 
-    public function __construct(string $accountId, string $versionId, int $activated)
+    public function __construct($accountId, string $versionId, int $activated)
     {
         $this->accountId = $accountId;
         $this->versionId = $versionId;
@@ -22,7 +22,7 @@ class AccessCreatedEvent extends Event
     }
 
 
-    public function getAccountId(): string
+    public function getAccountId()
     {
         return $this->accountId;
     }
