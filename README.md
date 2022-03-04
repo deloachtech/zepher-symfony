@@ -60,3 +60,7 @@ The only logic you'll have to implement is when a new account is created.
     2. Use the createAccount() method to initiate the new accounts existence in the access table.
 
 The online documentation can be used for most everything else.
+
+The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
+
+

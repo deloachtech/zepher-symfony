@@ -4,6 +4,8 @@
     "The 'dev' key will only be applicable when the zepher_dev.json file is loaded."
   ],
   "dev": {
-    "impersonate_role": "ROLE_SUPER_USER"
+    "impersonate_domain": "DOMAIN_APP",
+    "impersonate_role": "ROLE_SUPER_USER",
+    "impersonate_account": "account_id_1234"
   }
 }
