@@ -47,7 +47,7 @@ See this [example controller implementation](https://github.com/deloachtech/app-
 Usage
 -----
 
-This Symfony bundle implements many of the procedures defined in the [online documentation](https://docs.zepher.io). See the `config/packages/zepher.yaml` for settings that are specific to this installation.
+This Symfony bundle implements many of the procedures defined in the [online documentation](https://zepher.io/docs). See the `config/packages/zepher.yaml` for settings that are specific to this installation.
 
 The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
 
