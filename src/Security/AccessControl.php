@@ -2,29 +2,22 @@
 
 namespace DeLoachTech\ZepherBundle\Security;
 
-use DeLoachTech\Zepher\AccessValueObject;
 use DeLoachTech\ZepherBundle\Repository\AccessRepository;
 use DeLoachTech\Zepher\Zepher;
-use DeLoachTech\ZepherBundle\Service\AccessService;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class AccessControl extends Zepher
 {
 
-    private $accessRepository;
-    private $accessService;
     private $accessConfig;
 
     public function __construct(
         AccessRepository $accessRepository,
         SessionInterface $session,
-        AccessService    $accessService,
         array            $accessConfig
     )
     {
         $this->accessConfig = $accessConfig;
-        $this->accessRepository = $accessRepository;
-        $this->accessService = $accessService;
 
         $domainId = null;
 
@@ -48,16 +41,19 @@ class AccessControl extends Zepher
         $accountId = $dev['impersonate']['account'] ?? $accountId;
         $userRoles = isset($dev['impersonate']['role']) ? (array)$dev['impersonate']['role'] : $userRoles;
 
-        if ($accountId) {
 
+        if ($accountId) {
             if ($accessRepository->isEmpty()) {
-                $this->accessService->createAccount($accountId, $domainId ?? $this->accessConfig['app_domain_id']);
-            } else {
-                $vo = new AccessValueObject($accountId);
-                $this->accessRepository->getAccessValues($vo);
-                $domainId = $vo->getDomainId();
+                $domainId =  $this->accessConfig['app_domain_id'];
+//                $this->accessService->createAccount($accountId, $domainId ?? $this->accessConfig['app_domain_id']);
+//            } else {
+//                $vo = new AccessValueObject($accountId);
+//                $this->accessRepository->getAccessValues($vo);
+//                $domainId = $vo->getDomainId();
             }
         }
+
+
 
         parent::__construct(
             $domainId,

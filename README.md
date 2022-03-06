@@ -50,9 +50,6 @@ Usage
 
 This Symfony bundle implements many of the procedures defined in the docs. See the `config/packages/zepher.yaml` for settings that are specific to this installation.
 
-The only logic you'll have to implement is when a new account is created. You have two options, Dispatch the `DeLoachTech\ZepherBundle\Event\AccountCreatedEvent`, _or_ Create the new access record using the `DeLoachTech\ZepherBundle\AccessService`.
-
-
 The online documentation can be used for most everything else.
 
 The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
