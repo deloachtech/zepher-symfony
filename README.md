@@ -42,15 +42,12 @@ The installation includes everything you need to get started as a Super User _by
 
 You've just enforced RBAC, SaaS, domain access and application versioning. All in a single method.
 
-See https://github.com/deloachtech/app-core-bundle/blob/master/src/Controller/AccessController.php
-for an example controller implementation.
+See an [example controller implementation](https://github.com/deloachtech/app-core-bundle/blob/master/src/Controller/AccessController.php).
 
 Usage
 -----
 
-This Symfony bundle implements many of the procedures defined in the docs. See the `config/packages/zepher.yaml` for settings that are specific to this installation.
-
-The online documentation can be used for most everything else.
+This Symfony bundle implements many of the procedures defined in the [online documentation](https://docs.zepher.io). See the `config/packages/zepher.yaml` for settings that are specific to this installation.
 
 The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
 
