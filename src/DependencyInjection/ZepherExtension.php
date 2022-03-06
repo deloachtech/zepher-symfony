@@ -28,8 +28,8 @@ class ZepherExtension extends Extension
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->getDefinition(AccessControl::class)->setArgument('$config', $config);
-        $container->getDefinition(AccessService::class)->setArgument('$config', $config);
+        $container->getDefinition(AccessControl::class)->setArgument('$accessConfig', $config);
+        $container->getDefinition(AccessService::class)->setArgument('$accessConfig', $config);
 
         // This extension config
 //        dd($config);

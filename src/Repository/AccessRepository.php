@@ -129,10 +129,10 @@ class AccessRepository extends ServiceEntityRepository implements PersistenceCla
 
     /**
      * Zepher/FeeProviderPersistenceInterface method
-     * @param $configFile
+     * @param $objectFile
      * @return void
      */
-    public function configFile($configFile)
+    public function objectFile($objectFile)
     {
 
     }

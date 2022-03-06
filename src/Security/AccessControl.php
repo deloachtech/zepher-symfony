@@ -13,34 +13,45 @@ class AccessControl extends Zepher
 
     private $accessRepository;
     private $accessService;
-    private $_config;
+    private $accessConfig;
 
     public function __construct(
         AccessRepository $accessRepository,
         SessionInterface $session,
         AccessService    $accessService,
-        array            $config
+        array            $accessConfig
     )
     {
-        $this->_config = $config;
+        $this->accessConfig = $accessConfig;
         $this->accessRepository = $accessRepository;
         $this->accessService = $accessService;
 
         $domainId = null;
 
-        $accountId = $session->get($config['session_keys']['account_id']);
-        $userRoles = $session->get($config['session_keys']['user_roles']) ?? [];
+        $accountId = $session->get($this->accessConfig['session_keys']['account_id']);
+        $userRoles = $session->get($this->accessConfig['session_keys']['user_roles']) ?? [];
 
-        // Use the Zepher extra impersonation feature.
-        $extra = Zepher::getConfig($config['object_file'])['extra'] ??[];
-        $domainId = $extra['impersonate_domain']??$domainId;
-        $accountId = $extra['impersonate_account']??$accountId;
-        $userRoles = isset($extre['impersonate_role']) ? (array)$extra['extra']['impersonate_role'] : $userRoles;
+        $dev = [];
+
+        if ($_ENV['APP_ENV'] == 'dev') {
+            // Use the Zepher extra impersonation feature.
+            $info = pathinfo($this->accessConfig['object_file']);
+            $dir = ($info['dirname'] ? $info['dirname'] . DIRECTORY_SEPARATOR : '');
+            $devFile = $dir . $info['filename'] . '_dev.json';
+
+            if (file_exists($devFile)) {
+                $dev = json_decode(file_get_contents($devFile), true);
+            }
+        }
+
+        $domainId = $dev['impersonate']['domain'] ?? $domainId;
+        $accountId = $dev['impersonate']['account'] ?? $accountId;
+        $userRoles = isset($dev['impersonate']['role']) ? (array)$dev['impersonate']['role'] : $userRoles;
 
         if ($accountId) {
 
             if ($accessRepository->isEmpty()) {
-                $this->accessService->createAccount($accountId, $domainId ?? $config['app_domain_id']);
+                $this->accessService->createAccount($accountId, $domainId ?? $this->accessConfig['app_domain_id']);
             } else {
                 $vo = new AccessValueObject($accountId);
                 $this->accessRepository->getAccessValues($vo);
@@ -53,12 +64,14 @@ class AccessControl extends Zepher
             $accountId,
             $userRoles,
             $accessRepository,
-            $config['object_file']
+            $this->accessConfig['object_file']
         );
     }
 
     public function getAccessConfig(): array
     {
-        return $this->_config;
+        return $this->accessConfig;
     }
+
+
 }

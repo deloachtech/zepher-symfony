@@ -3,18 +3,17 @@
 namespace DeLoachTech\ZepherBundle\Service;
 
 use DeLoachTech\Zepher\AccessValueObject;
-use DeLoachTech\Zepher\Zepher;
 use DeLoachTech\ZepherBundle\Repository\AccessRepository;
 
 class AccessService
 {
 
-    private $config;
+    private $accessConfig;
     private $accessRepository;
 
-    public function __construct(AccessRepository $accessRepository, array $config)
+    public function __construct(AccessRepository $accessRepository, array $accessConfig)
     {
-        $this->config = $config;
+        $this->accessConfig = $accessConfig;
         $this->accessRepository = $accessRepository;
     }
 
@@ -29,10 +28,8 @@ class AccessService
      */
     public function createAccount($accountId, string $domainId, string $versionId = null): bool
     {
-
-        $json = Zepher::getConfig($this->config['object_file'])['object'];
-
-        $versionId = $versionId ?? reset($json['data']['domains'][$domainId]['versions']);
+        $array = json_decode(file_get_contents($this->accessConfig['object_file']), true);
+        $versionId = $versionId ?? reset($array['data']['domains'][$domainId]['versions']);
 
         $vo = new AccessValueObject($accountId);
         $vo
@@ -52,9 +49,9 @@ class AccessService
     }
 
 
-    public function getConfig(): array
+    public function getAccessConfig(): array
     {
-        return $this->config;
+        return $this->accessConfig;
     }
 
 }
