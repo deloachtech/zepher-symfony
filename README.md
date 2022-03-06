@@ -42,7 +42,7 @@ The installation includes everything you need to get started as a Super User _by
 
 You've just enforced RBAC, SaaS, domain access and application versioning. All in a single method.
 
-See an [example controller implementation](https://github.com/deloachtech/app-core-bundle/blob/master/src/Controller/AccessController.php).
+See this [example controller implementation](https://github.com/deloachtech/app-core-bundle/blob/master/src/Controller/AccessController.php) for additional information.
 
 Usage
 -----
