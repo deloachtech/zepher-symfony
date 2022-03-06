@@ -29,19 +29,16 @@ Install the bundle.
 A database table is added for the Zepher access control data.
 
 A new installation:
-* Includes a `config/zepher_dev.json` file for your `dev` environment with data to get you started.
-* Includes an empty `config/zepher.json` file for your `prod` environment.
-* Impersonates the ROLE_SUPER_USER role (see `config/zepher_extra.json`).
-* Includes some features and RBAC to get you started.
+* Includes a starter `config/zepher.json` object file.
+* Impersonates values for developing (see `config/zepher_dev.json`).
 
 Quick Start
 -----------
 
-The installation includes everything you need to get started as a Super User _by impersonation_ (See `config/zepher_extra.json`).
+The installation includes everything you need to get started as a Super User _by impersonation_ (See `config/zepher_dev.json`).
 
-Go anywhere and implement the Symfony is_granted('FEATURE_ACCOUNT', 'PERMISSION_UPDATE') condition. As the Super User you'll be granted access.
-
-Now change the `dev.impersonate_role` value in the `config/zepher_extra.json` file to "ROLE_BAD" and try again.
+1. Go anywhere and implement the Symfony is_granted('FEATURE_ACCOUNT', 'PERMISSION_UPDATE') condition. As the Super User you'll be granted access.
+2. Now change the `impersonate.role` value in the `config/zepher_dev.json` file to "ROLE_BAD" and try again.
 
 You've just enforced RBAC, SaaS, domain access and application versioning. All in a single method.
 
