@@ -108,7 +108,7 @@ class AccessRepository extends ServiceEntityRepository implements PersistenceCla
     {
         $array = [];
 
-        $vos = $this->getAccountRecords($accountId);
+        $vos = $this->_getAccountRecords($accountId);
 
         foreach ($vos as $vo) {
             $array[] = (new AccessValueObject($accountId))
