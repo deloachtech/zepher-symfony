@@ -69,5 +69,4 @@ class AccessControl extends Zepher
         return $this->accessConfig;
     }
 
-
 }
