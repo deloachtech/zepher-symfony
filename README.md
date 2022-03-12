@@ -11,15 +11,16 @@ Installation
 
 Add the DeLoach Tech `flex-recipes` ([deloachtech/flex-recipes](https://github.com/deloachtech/flex-recipes)) endpoint to the projects `composer.json` file. (If you choose not to add the endpoint, you must manually implement the manifest.)
 
-    "extra": {
-        "symfony": {
-            ...
-            "endpoint": [
-                "https://api.github.com/repos/deloachtech/flex-recipes/contents/index.json",
-                "flex://defaults"
-            ]
-        }
+```json
+"extra": {
+    "symfony": {
+        "endpoint": [
+            "https://api.github.com/repos/deloachtech/flex-recipes/contents/index.json",
+            "flex://defaults"
+        ]
     }
+}
+```
 
 Install the bundle.
 
@@ -42,7 +43,7 @@ The installation includes everything you need to get started as a Super User _by
 
 You've just enforced RBAC, SaaS, domain access and application versioning. All in a single method.
 
-See this [example controller implementation](https://github.com/deloachtech/app-core-bundle/blob/master/src/Controller/AccessController.php) for additional information.
+See this [example controller implementation](https://github.com/deloachtech/app-core/blob/master/src/Controller/AccessController.php) for additional information.
 
 Usage
 -----
