@@ -3,7 +3,7 @@ Zepher for Symfony
 
 Zepher provides RBAC, SaaS, Customer networking and fee-based app versioning. See [zepher.io](https://zepher.io) for more information.
 
-This is the Symfony implementation of the Zepher object processor.
+This is the `Symfony` implementation of the Zepher object processor.
 
 
 Installation
@@ -27,7 +27,7 @@ Install the bundle.
     composer require deloachtech/zepher-symfony
 
 
-A database table is added for the Zepher access control data.
+A database table is added for Zepher access control results.
 
 A new installation:
 * Includes a starter `config/zepher.json` object file.
