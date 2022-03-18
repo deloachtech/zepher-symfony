@@ -9,25 +9,15 @@ This is the `Symfony` implementation of the Zepher object processor.
 Installation
 ------------
 
-Add the DeLoach Tech `flex-recipes` ([deloachtech/flex-recipes](https://github.com/deloachtech/flex-recipes)) endpoint to the projects `composer.json` file. (If you choose not to add the endpoint, you must manually implement the manifest.)
-
-```json
-"extra": {
-    "symfony": {
-        "endpoint": [
-            "https://api.github.com/repos/deloachtech/flex-recipes/contents/index.json",
-            "flex://defaults"
-        ]
-    }
-}
-```
-
-Install the bundle.
-
     composer require deloachtech/zepher-symfony
 
 
 A database table is added for Zepher access control results.
+
+    bin/console make:migration
+    bin/console doctrine:migrations:migrate
+
+Edit `config/packages/zepher.yaml` as required.
 
 A new installation:
 * Includes a starter `config/zepher.json` object file.
@@ -38,22 +28,30 @@ Quick Start
 
 The installation includes everything you need to get started as a Super User _by impersonation_ (See `config/zepher_dev.json`).
 
-1. Go anywhere and implement the Symfony is_granted('FEATURE_ACCOUNT', 'PERMISSION_UPDATE') condition. As the Super User you'll be granted access.
-2. Now change the `impersonate.role` value in the `config/zepher_dev.json` file to "ROLE_BAD" and try again.
+Go anywhere and implement the `Symfony` security condition.
+```php 
+is_granted('FEATURE_ACCOUNT', 'PERMISSION_UPDATE')
+``` 
+As the Super User (by impersonation), you'll be granted access.
 
-You've just enforced RBAC, SaaS, domain access and application versioning. All in a single method.
+Now change the  `config/zepher_dev.json` role value and try again.
+
+```json
+"impersonate": {
+  "role": "ROLE_BAD"
+}
+```
+
+You've just enforced RBAC, SaaS, domain access and application versioning. All in a single `Symfony` method.
 
 See this [example controller implementation](https://github.com/deloachtech/app-core/blob/master/src/Controller/AccessController.php) for additional information.
 
 Usage
 -----
 
-This Symfony bundle implements many of the procedures defined in the [online documentation](https://zepher.io/docs). See the `config/packages/zepher.yaml` for settings that are specific to this installation.
-
-When your app creates a new account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountCreatedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to create an access record for it.
-
-When your app deletes an account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountDeletedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to delete the associated access records.
-
-The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
+* This bundle implements many of the procedures defined in the [online documentation](https://zepher.io/docs). See the `config/packages/zepher.yaml` for settings that are specific to this installation.
+* When your app creates a new account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountCreatedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to create an access record for it.
+* When your app deletes an account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountDeletedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to delete the associated access records.
+* The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
 
 
