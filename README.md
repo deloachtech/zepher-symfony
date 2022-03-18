@@ -3,7 +3,7 @@ Zepher for Symfony
 
 Zepher provides RBAC, SaaS, Customer networking and fee-based app versioning. See [zepher.io](https://zepher.io) for more information.
 
-This is the `Symfony` implementation of the Zepher object processor.
+This is the `Symfony` implementation of the Zepher object processor. It's released under the MIT license for public use.
 
 
 Installation
