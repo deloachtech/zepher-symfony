@@ -19,7 +19,7 @@
       "config/zepher_dev.json": "{\n  \"_readme\": [\n    \"This file provides a means for modifying the behavior of the core object processor during development.\",\n    \"Zepher will automatically load this file if it exists in the same location as the main object file.\",\n    \"Note: The account id being impersonated does not have to exist.\",\n    \"DO NOT UPLOAD THIS FILE TO THE PRODUCTION ENVIRONMENT!\"\n  ],\n  \"impersonate\": {\n    \"domain\": \"DOMAIN_APP\",\n    \"role\": \"ROLE_SUPER_USER\",\n    \"account\": \"account_1234\"\n  }\n}"
     },
     "bundle": {
-      "DeLoachTech\\ZepherBundle\\ZepherBundle::class": "all"
+      "DeLoachTech\\ZepherBundle\\ZepherBundle": "all"
     },
     "append": {
       ".env": "ZEPHER_OBJECT_FILE='%kernel.project_dir%/config/zepher.json'\nAPP_DOMAIN_ID=DOMAIN_APP"
