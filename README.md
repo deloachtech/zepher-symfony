@@ -17,12 +17,6 @@ A database table is added for Zepher access control results.
     bin/console make:migration
     bin/console doctrine:migrations:migrate
 
-Edit `config/packages/zepher.yaml` as required.
-
-A new installation:
-* Includes a starter `config/zepher.json` object file.
-* Impersonates values for developing (see `config/zepher_dev.json`).
-
 Quick Start
 -----------
 
