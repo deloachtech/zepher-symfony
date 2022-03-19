@@ -1,9 +1,9 @@
 Zepher for Symfony
 ==================
 
-Zepher provides RBAC, SaaS, Customer networking and fee-based app versioning. See [zepher.io](https://zepher.io) for more information.
+[Zepher](https://zepher.io) provides RBAC, SaaS, Customer networking and fee-based app versioning to an existing codebase.
 
-This is the `Symfony` implementation of the Zepher object processor. It's released under the MIT license for public use.
+This is the `Symfony` implementation of the `Zepher` object processor. It's released under the MIT license for public use.
 
 
 Installation
@@ -12,10 +12,11 @@ Installation
     composer require deloachtech/zepher-symfony
 
 
-A database table is added for Zepher access control results.
+A database table is added for Zepher access control.
 
     bin/console make:migration
     bin/console doctrine:migrations:migrate
+
 
 Quick Start
 -----------
@@ -43,9 +44,11 @@ See this [example controller implementation](https://github.com/deloachtech/app-
 Usage
 -----
 
-* This bundle implements many of the procedures defined in the [online documentation](https://zepher.io/docs). See the `config/packages/zepher.yaml` for settings that are specific to this installation.
-* When your app creates a new account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountCreatedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to create an access record for it.
-* When your app deletes an account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountDeletedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to delete the associated access records.
-* The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
+This bundle will automatically implement many of the procedures defined in the [Zepher docs](https://zepher.io/docs).
 
+You only have `two` acccount related events to implement the access control features:
 
+1. When your app creates a new account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountCreatedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to create an access record for it.
+2. When your app deletes an account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountDeletedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to delete the associated access records.
+
+The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
