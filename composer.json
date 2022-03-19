@@ -23,6 +23,11 @@
     },
     "append": {
       ".env": "ZEPHER_OBJECT_FILE='%kernel.project_dir%/config/zepher.json'\nAPP_DOMAIN_ID=DOMAIN_APP"
-    }
+    },
+    "post-install-info": [
+      "Run bin/console make:migration",
+      "Run bin/console doctrine:migrations:migrate",
+      "Edit config/packages/zepher.yaml as needed."
+    ]
   }
 }
