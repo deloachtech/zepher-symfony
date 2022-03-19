@@ -19,16 +19,18 @@ class AccessControlVoter extends Voter
 {
 
     private $accessControl;
+    private $config;
 
     public function __construct(AccessControl $accessControl)
     {
         $this->accessControl = $accessControl;
+        $this->config = $accessControl->getAccessConfig();
     }
 
 
     protected function supports(string $attribute, $subject): bool
     {
-        $key = $this->accessControl->getAccessConfig()['feature_id_prefix'];
+        $key = $this->config['feature_id_prefix'];
 
         if (substr($attribute, 0, strlen($key)) != $key) {
             return false;
@@ -39,6 +41,9 @@ class AccessControlVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
-        return $this->accessControl->userCanAccess($attribute, $subject);
+        return $this->accessControl->userCanAccess(
+            $this->config['feature_id_map'][$attribute] ?? $attribute,
+            $this->config['permission_id_map'][$subject] ?? $subject
+        );
     }
 }
