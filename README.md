@@ -9,7 +9,6 @@ This is the `Symfony` implementation of the `Zepher` object processor. It's rele
 Installation
 ------------
 
-    composer require deloachtech/bundle-installer
     composer require deloachtech/zepher-symfony
 
 
