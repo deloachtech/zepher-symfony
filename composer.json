@@ -1,10 +1,9 @@
 {
   "name": "deloachtech/zepher-symfony",
   "description": "This Zepher Symfony bundle adds RBAC, SaaS and app versioning to your application. It's released under the MIT license for public use.",
-  "type": "deloachtech-package",
+  "type": "deloachtech-bundle",
   "license": "MIT",
   "require": {
-    "deloachtech/package-installer": "1.0.*",
     "deloachtech/zepher-php": "1.1.*"
   },
   "autoload": {
