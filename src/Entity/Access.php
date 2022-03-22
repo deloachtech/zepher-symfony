@@ -24,7 +24,7 @@ class Access
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\Column(type="string", options={"collation":"utf8_bin"}, nullable=false, length=20)
+     * @ORM\Column(type="string", nullable=false, length=20)
      */
     private $accountId;
 
@@ -43,7 +43,7 @@ class Access
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\Column(type="string", options={"collation":"utf8_bin"}, nullable=false, length=20)
+     * @ORM\Column(type="string", nullable=false, length=20)
      */
     private $versionId;
 
