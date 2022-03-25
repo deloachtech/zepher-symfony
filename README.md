@@ -5,7 +5,7 @@ Zepher for Symfony
 
 This is the `Symfony` implementation of the `Zepher` object processor. It's released under the MIT license for public use.
 
-_Note: This package is already included in the [deloachtech/app-dashboard](https://github.com/deloachtech/app-dashboard) package._
+_Note: This package is already included in the [deloachtech/app-core](https://github.com/deloachtech/app-core) package._
 
 Installation
 ------------
