@@ -45,7 +45,7 @@ Now change the  `config/zepher_dev.json` role value and try again.
 
 You've just enforced RBAC, SaaS, domain access and application versioning using a single method.
 
-See this [example controller implementation](https://github.com/deloachtech/app-core/blob/master/src/Controller/AccessController.php) for additional information.
+See the [DeLoachTech\AppCoreBundle\Controller\AccountUserController](https://github.com/deloachtech/app-core/blob/master/src/Controller/AccountUserController.php) for an example use case.
 
 
 Usage
