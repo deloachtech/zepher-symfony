@@ -5,7 +5,7 @@ Zepher for Symfony
 
 This is the Symfony implementation of the [Zepher object processor](https://github.com/deloachtech/zepher-php/blob/master/src/Zepher.php). It's released under the MIT license for public use.
 
-> This package includes the `free` version of Zepher with a minimal `config/zepher.json` object file.
+> This package includes the `free` version of Zepher with a minimal `config/zepher.json` file. You can modify it manually , or create your own using the [zepher.io dashboard](https://zepher.io). 
 
 > This package is already included in the [deloachtech/app-core](https://github.com/deloachtech/app-core) package.
 
