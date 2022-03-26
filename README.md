@@ -27,7 +27,7 @@ Quick Start
 
 The installation includes everything you need to get started as a Super User _by impersonation_ (See `config/zepher_dev.json`).
 
-Go anywhere and implement the `Symfony` security condition.
+Go anywhere and implement the Symfony security condition.
 ```php 
 is_granted('FEATURE_ACCOUNT', 'PERMISSION_UPDATE')
 ``` 
@@ -41,18 +41,19 @@ Now change the  `config/zepher_dev.json` role value and try again.
 }
 ```
 
-You've just enforced RBAC, SaaS, domain access and application versioning. All in a single `Symfony` method.
+You've just enforced RBAC, SaaS, domain access and application versioning using a single method.
 
 See this [example controller implementation](https://github.com/deloachtech/app-core/blob/master/src/Controller/AccessController.php) for additional information.
+
 
 Usage
 -----
 
 This bundle will automatically implement many of the procedures defined in the [Zepher docs](https://zepher.io/docs).
 
-You only have `two` acccount related events to implement the access control features:
+You have `two` account related events to implement:
 
-1. When your app creates a new account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountCreatedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to create an access record for it.
-2. When your app deletes an account, either trigger the `DeLoachTech\ZepherBundle\Event\AccountDeletedEvent`, or use the `DeLoachTech\ZepherBundle\Service` to delete the associated access records.
+1. When your app creates a new account, either trigger the [DeLoachTech\ZepherBundle\Event\AccountCreatedEvent](https://github.com/deloachtech/zepher-symfony/blob/master/src/Event/AccountCreatedEvent.php), or use the [DeLoachTech\ZepherBundle\Service](https://github.com/deloachtech/zepher-symfony/blob/master/src/Service/AccessService.php) to create an access record for it.
+2. When your app deletes an account, either trigger the [DeLoachTech\ZepherBundle\Event\AccountDeletedEvent](https://github.com/deloachtech/zepher-symfony/blob/master/src/Event/AccountDeletedEvent.php), or use the [DeLoachTech\ZepherBundle\Service](https://github.com/deloachtech/zepher-symfony/blob/master/src/Service/AccessService.php) to delete the associated access records.
 
-The `DeLoachTech\ZepherBundle\Security\AccessControl` class extends Zepher and uses `DeLoachTech\ZepherBundle\Security\AccessControlVoter` for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
+The [DeLoachTech\ZepherBundle\Security\AccessControl](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControl.php) class extends Zepher and uses [DeLoachTech\ZepherBundle\Security\AccessControlVoter](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControlVoter.php) for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
