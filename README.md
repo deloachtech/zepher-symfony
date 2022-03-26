@@ -47,6 +47,10 @@ You've just enforced RBAC, SaaS, domain access and application versioning using 
 
 See the [DeLoachTech\AppCoreBundle\Controller\AccountUserController](https://github.com/deloachtech/app-core/blob/master/src/Controller/AccountUserController.php) for an example use case.
 
+The [DeLoachTech\ZepherBundle\Security\AccessControl](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControl.php) class extends [the Zepher object processor](https://github.com/deloachtech/zepher-php/blob/master/src/Zepher.php) and uses [DeLoachTech\ZepherBundle\Security\AccessControlVoter](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControlVoter.php) for enforcement via the Symfony is_granted() method. 
+
+You won't have to do anything to use the access control features. When you need it, simply inject the `DeLoachTech\ZepherBundle\Security\AccessControl` class into your controller or service.
+
 
 Usage
 -----
@@ -58,4 +62,3 @@ You have `two` account related events to implement:
 1. When your app creates a new account, either trigger the [DeLoachTech\ZepherBundle\Event\AccountCreatedEvent](https://github.com/deloachtech/zepher-symfony/blob/master/src/Event/AccountCreatedEvent.php), or use the [DeLoachTech\ZepherBundle\Service](https://github.com/deloachtech/zepher-symfony/blob/master/src/Service/AccessService.php) to create an access record for it.
 2. When your app deletes an account, either trigger the [DeLoachTech\ZepherBundle\Event\AccountDeletedEvent](https://github.com/deloachtech/zepher-symfony/blob/master/src/Event/AccountDeletedEvent.php), or use the [DeLoachTech\ZepherBundle\Service](https://github.com/deloachtech/zepher-symfony/blob/master/src/Service/AccessService.php) to delete the associated access records.
 
-The [DeLoachTech\ZepherBundle\Security\AccessControl](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControl.php) class extends Zepher and uses [DeLoachTech\ZepherBundle\Security\AccessControlVoter](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControlVoter.php) for enforcement via the Symfony is_granted() method. You won't have to do anything to use the access control features. When you need it, simply inject the AccessControl class into your controller or service.
