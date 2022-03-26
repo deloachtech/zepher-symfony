@@ -3,7 +3,9 @@ Zepher for Symfony
 
 [Zepher](https://zepher.io) provides RBAC, SaaS, Customer networking and fee-based app versioning to an existing codebase.
 
-This is the `Symfony` implementation of the `Zepher` object processor. It's released under the MIT license for public use.
+This is the Symfony implementation of the [Zepher object processor](https://github.com/deloachtech/zepher-php/blob/master/src/Zepher.php). It's released under the MIT license for public use.
+
+> This package includes the `free` version of Zepher with a minimal `config/zepher.json` object file.
 
 > This package is already included in the [deloachtech/app-core](https://github.com/deloachtech/app-core) package.
 
