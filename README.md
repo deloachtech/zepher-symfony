@@ -47,9 +47,11 @@ You've just enforced RBAC, SaaS, domain access and application versioning using 
 
 See the [DeLoachTech\AppCoreBundle\Controller\AccountUserController](https://github.com/deloachtech/app-core/blob/master/src/Controller/AccountUserController.php) for an example use case.
 
-The [DeLoachTech\ZepherBundle\Security\AccessControl](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControl.php) class extends [the Zepher object processor](https://github.com/deloachtech/zepher-php/blob/master/src/Zepher.php) and uses [DeLoachTech\ZepherBundle\Security\AccessControlVoter](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControlVoter.php) for enforcement via the Symfony is_granted() method. 
+You won't have to do anything to use the access control (RBAC) features. When you need it, simply inject the `DeLoachTech\ZepherBundle\Security\AccessControl` class into your controller or service.
 
-You won't have to do anything to use the access control features. When you need it, simply inject the `DeLoachTech\ZepherBundle\Security\AccessControl` class into your controller or service.
+###FYI
+
+The [DeLoachTech\ZepherBundle\Security\AccessControl](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControl.php) class extends the [DeLoachTech\Zepher\Zepher](https://github.com/deloachtech/zepher-php/blob/master/src/Zepher.php) object processor and uses the [DeLoachTech\ZepherBundle\Security\AccessControlVoter](https://github.com/deloachtech/zepher-symfony/blob/master/src/Security/AccessControlVoter.php) for enforcement of the Symfony is_granted() method. 
 
 
 Usage
