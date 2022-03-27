@@ -14,7 +14,7 @@ This is the Symfony implementation of the [DeLoachTech\Zepher\Zepher](https://gi
 Installation
 ------------
 
-The `deloachtech/package-installer` is required for a Symfony bundle installation.
+> The `deloachtech/package-installer` is required for a Symfony bundle installation.
 
     composer require deloachtech/package-installer
     composer require deloachtech/zepher-symfony
