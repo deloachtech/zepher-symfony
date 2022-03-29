@@ -1,7 +1,7 @@
 Zepher for Symfony
 ==================
 
-[Zepher](https://zepher.io) provides RBAC, SaaS, Customer networking and fee-based app versioning to an existing codebase.
+[Zepher](https://zepher.io) integrates RBAC, SaaS, Customer networking and fee-based app versioning into an existing codebase.
 
 > This package is specifically designed for Symfony applications. See [deloachtech/zepher-php](https://github.com/deloachtech/zepher-php) for a vanilla Zepher PHP installation.
 
