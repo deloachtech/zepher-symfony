@@ -14,16 +14,17 @@ This is the Symfony implementation of the [DeLoachTech\Zepher\Zepher](https://gi
 Installation
 ------------
 
-> The `deloachtech/package-installer` is required for a Symfony bundle installation.
+```bash
+# The deloachtech/package-installer is required for a Symfony bundle installation.
+$ composer require deloachtech/package-installer
 
-    composer require deloachtech/package-installer
-    composer require deloachtech/zepher-symfony
+# The package.
+$ composer require deloachtech/zepher-symfony
 
-
-A database table is added for Zepher access control.
-
-    bin/console make:migration
-    bin/console doctrine:migrations:migrate
+# Initialize the database table(s).
+$ bin/console make:migration
+$ bin/console doctrine:migrations:migrate
+```
 
 
 Quick Start
