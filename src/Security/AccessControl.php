@@ -30,38 +30,13 @@ class AccessControl extends Zepher
 
         $domainId = null;
 
-        $accountId = $session->get($this->accessConfig['session_keys']['account_id']);
-        $userRoles = $session->get($this->accessConfig['session_keys']['user_roles']) ?? [];
-
-        $dev = [];
-
-        if ($_ENV['APP_ENV'] == 'dev') {
-
-            $info = pathinfo($this->accessConfig['object_file']);
-            $dir = ($info['dirname'] ? $info['dirname'] . DIRECTORY_SEPARATOR : '');
-            $devFile = $dir . $info['filename'] . '_dev.json';
-
-            if (file_exists($devFile)) {
-                $dev = json_decode(file_get_contents($devFile), true);
-            }
-        }
-
-        $domainId = $dev['simulate']['domain'] ?? $domainId;
-//        $accountId = $dev['simulate']['account'] ?? $accountId;
-        $userRoles = isset($dev['simulate']['role']) ? (array)$dev['simulate']['role'] : $userRoles;
-
-
-        if ($accountId) {
+        if($accountId = $session->get($this->accessConfig['session_keys']['account_id'])){
             if ($accessRepository->isEmpty()) {
                 $domainId =  $this->accessConfig['app_domain_id'];
-//            } else {
-//                $vo = new AccessValueObject($accountId);
-//                $accessRepository->->getCurrentAccessRecord($vo);
-//                $domainId = $vo->getDomainId();
             }
         }
 
-
+        $userRoles = $session->get($this->accessConfig['session_keys']['user_roles']) ?? [];
 
         parent::__construct(
             $domainId,
