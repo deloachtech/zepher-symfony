@@ -40,7 +40,7 @@ class AccessControl extends Zepher
             $accessValueObject = new AccessValueObject($accountId);
             $accessRepository->getCurrentAccessRecord($accessValueObject);
 
-//            $domainId = $accessValueObject->getDomainId();
+            $domainId = $accessValueObject->getDomainId();
 
             $userRoles = $session->get($this->accessConfig['session_keys']['user_roles']) ?? [];
         }
