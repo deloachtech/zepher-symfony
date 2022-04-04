@@ -11,6 +11,7 @@
 
 namespace DeLoachTech\ZepherBundle\Security;
 
+use DeLoachTech\Zepher\AccessValueObject;
 use DeLoachTech\ZepherBundle\Repository\AccessRepository;
 use DeLoachTech\Zepher\Zepher;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -29,14 +30,21 @@ class AccessControl extends Zepher
         $this->accessConfig = $accessConfig;
 
         $domainId = null;
+        $userRoles = [];
 
         if($accountId = $session->get($this->accessConfig['session_keys']['account_id'])){
             if ($accessRepository->isEmpty()) {
                 $domainId =  $this->accessConfig['app_domain_id'];
             }
+
+            $accessValueObject = new AccessValueObject($accountId);
+            $accessRepository->getCurrentAccessRecord($accessValueObject);
+
+//            $domainId = $accessValueObject->getDomainId();
+
+            $userRoles = $session->get($this->accessConfig['session_keys']['user_roles']) ?? [];
         }
 
-        $userRoles = $session->get($this->accessConfig['session_keys']['user_roles']) ?? [];
 
         parent::__construct(
             $domainId,
