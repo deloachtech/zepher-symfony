@@ -36,7 +36,7 @@ class AccessControl extends Zepher
         $dev = [];
 
         if ($_ENV['APP_ENV'] == 'dev') {
-            // Use the Zepher extra impersonation feature.
+
             $info = pathinfo($this->accessConfig['object_file']);
             $dir = ($info['dirname'] ? $info['dirname'] . DIRECTORY_SEPARATOR : '');
             $devFile = $dir . $info['filename'] . '_dev.json';
@@ -46,18 +46,17 @@ class AccessControl extends Zepher
             }
         }
 
-        $domainId = $dev['impersonate']['domain'] ?? $domainId;
-        $accountId = $dev['impersonate']['account'] ?? $accountId;
-        $userRoles = isset($dev['impersonate']['role']) ? (array)$dev['impersonate']['role'] : $userRoles;
+        $domainId = $dev['simulate']['domain'] ?? $domainId;
+//        $accountId = $dev['simulate']['account'] ?? $accountId;
+        $userRoles = isset($dev['simulate']['role']) ? (array)$dev['simulate']['role'] : $userRoles;
 
 
         if ($accountId) {
             if ($accessRepository->isEmpty()) {
                 $domainId =  $this->accessConfig['app_domain_id'];
-//                $this->accessService->createAccount($accountId, $domainId ?? $this->accessConfig['app_domain_id']);
 //            } else {
 //                $vo = new AccessValueObject($accountId);
-//                $this->accessRepository->getAccessValues($vo);
+//                $accessRepository->->getCurrentAccessRecord($vo);
 //                $domainId = $vo->getDomainId();
             }
         }
