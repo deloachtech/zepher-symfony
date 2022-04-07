@@ -65,3 +65,10 @@ You have `two` account related events to implement:
 1. When your app creates a new account, either trigger the [DeLoachTech\ZepherBundle\Event\AccountCreatedEvent](https://github.com/deloachtech/zepher-symfony/blob/master/src/Event/AccountCreatedEvent.php), or use the [DeLoachTech\ZepherBundle\Service](https://github.com/deloachtech/zepher-symfony/blob/master/src/Service/AccessService.php) to create an access record for it.
 2. When your app deletes an account, either trigger the [DeLoachTech\ZepherBundle\Event\AccountDeletedEvent](https://github.com/deloachtech/zepher-symfony/blob/master/src/Event/AccountDeletedEvent.php), or use the [DeLoachTech\ZepherBundle\Service](https://github.com/deloachtech/zepher-symfony/blob/master/src/Service/AccessService.php) to delete the associated access records.
 
+### Related Usage
+
+```bash
+# List all features or permissions in deloachtech packages
+$ bin/console deloachtech:features
+$ bin/console deloachtech:permissions
+```
