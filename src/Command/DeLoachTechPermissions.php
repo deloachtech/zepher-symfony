@@ -37,30 +37,54 @@ class DeLoachTechPermissions extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+
         $project_dir = $this->containerBag->get('kernel.project_dir');
         $files = glob("{$project_dir}/vendor/deloachtech/*/{src,templates}/*/*.{php,twig}", GLOB_BRACE);
 
         $output->writeln(<<<'EOT'
 
 <comment>DeLoach Tech Permissions</comment>
-The following codebase lines were found in the <info>vendor/deloachtech</info> directory.
+The following permissions were found in the <info>vendor/deloachtech</info> directory.
 
 EOT
         );
 
         foreach ($files as $file) {
 
-            $lines = file($file, FILE_IGNORE_NEW_LINES);
-            $result = preg_grep('/PERMISSION_/', $lines);
+            if(strpos($file,"Command/DeLoachTechPermissions.php") ==false) { // Not this file
 
-            if($result) {
-                $_file = str_replace("{$project_dir}/","",$file);
-                $output->write("<info>File: {$_file}</info>", true);
+                $lines = file($file, FILE_IGNORE_NEW_LINES);
+                $result = preg_grep('/PERMISSION_/', $lines);
 
-                foreach ($result as $line) {
-                    $output->write(trim($line), true);
+                $a = [];
+
+                if ($result) {
+
+                    $_file = str_replace("{$project_dir}/", "", $file);
+                    $output->write("<info>File: {$_file}</info>", true);
+
+                    foreach ($result as $line) {
+
+                        $permissions = preg_split("@(?=PERMISSION_)@", $line, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+                        foreach ($permissions as $permission) {
+
+                            if (strstr($permission, 'PERMISSION_') !== false) {
+
+                                // $permission = PERMISSION_FOO') or is_granted('
+
+                                $str = str_replace(["'", '"'], '|', $permission);
+                                $a[strtok($str, '|')] = 1;
+
+                            }
+                        }
+
+                    }
+                    asort($a);
+                    foreach ($a as $k => $v) {
+                        $output->write($k, true);
+                    }
                 }
-                //$output->write(" ", true);
             }
         }
         $output->write("<info>Finished</info>", true);

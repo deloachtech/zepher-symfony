@@ -43,24 +43,47 @@ class DeLoachTechFeatures extends Command
         $output->writeln(<<<'EOT'
 
 <comment>DeLoach Tech Features</comment>
-The following codebase lines were found in the <info>vendor/deloachtech</info> directory.
+The following features were found in the <info>vendor/deloachtech</info> directory.
 
 EOT
         );
 
         foreach ($files as $file) {
 
-            $lines = file($file, FILE_IGNORE_NEW_LINES);
-            $result = preg_grep('/FEATURE_/', $lines);
+            if(strpos($file,"Command/DeLoachTechFeatures.php") ==false) { // Not this file
 
-            if($result) {
-                $_file = str_replace("{$project_dir}/","",$file);
-                $output->write("<info>File: {$_file}</info>", true);
+                $lines = file($file, FILE_IGNORE_NEW_LINES);
+                $result = preg_grep('/FEATURE_/', $lines);
 
-                foreach ($result as $line) {
-                    $output->write(trim($line), true);
+                $a = [];
+
+                if ($result) {
+
+                    $_file = str_replace("{$project_dir}/", "", $file);
+                    $output->write("<info>File: {$_file}</info>", true);
+
+                    foreach ($result as $line) {
+
+                        $features = preg_split("@(?=FEATURE_)@", $line, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+                        foreach ($features as $feature) {
+
+                            if (strstr($feature, 'FEATURE_') !== false) {
+
+                                // $feature = FEATURE_ACCOUNT_INVOICES') or is_granted('
+
+                                $str = str_replace(["'", '"'], '|', $feature);
+                                $a[strtok($str, '|')] = 1;
+
+                            }
+                        }
+
+                    }
+                    asort($a);
+                    foreach ($a as $k => $v) {
+                        $output->write($k, true);
+                    }
                 }
-                //$output->write(" ", true);
             }
         }
         $output->write("<info>Finished</info>", true);
