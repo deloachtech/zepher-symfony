@@ -67,8 +67,9 @@ You have `two` account related events to implement:
 
 ### Related Usage
 
+If you're using any deloachtech packages, you can list all features and permissions being used.
+
 ```bash
-# List all features or permissions in deloachtech packages
 $ bin/console deloachtech:features
 $ bin/console deloachtech:permissions
 ```
