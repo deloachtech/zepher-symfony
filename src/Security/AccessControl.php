@@ -33,14 +33,10 @@ class AccessControl extends Zepher
         $userRoles = [];
 
         if($accountId = $session->get($this->accessConfig['session_keys']['account_id'])){
+
             if ($accessRepository->isEmpty()) {
                 $domainId =  $this->accessConfig['app_domain_id'];
             }
-
-            $accessValueObject = new AccessValueObject($accountId);
-            $accessRepository->getCurrentAccessRecord($accessValueObject);
-
-            $domainId = $accessValueObject->getDomainId();
 
             $userRoles = $session->get($this->accessConfig['session_keys']['user_roles']) ?? [];
         }
